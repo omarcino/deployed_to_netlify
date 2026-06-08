@@ -64,11 +64,13 @@ Content lives in `src/content/<collection>/` as Markdown files.
 - `title` — string
 - `date` — date
 - `description` — string
+- `image` — string URL (optional) — shown as card cover image
 
 **quotes** (`src/content/quotes/*.md`)
 - `author` — string
 - `source` — string (optional)
 - `date` — date
+- `image` — string URL (optional) — shown as card cover image
 - Body: the quote text
 
 **projects** (`src/content/projects/*.md`)
@@ -77,11 +79,13 @@ Content lives in `src/content/<collection>/` as Markdown files.
 - `description` — string
 - `url` — string (optional)
 - `tags` — string[] (optional)
+- `image` — string URL (optional) — shown as card cover image
 - Body: full project write-up
 
 ### Styling notes
 
 - Main content area has `bg-white` (set on `<main>` in `BaseLayout.astro`)
 - All page headings use `text-gray-900`
+- Listing pages use a 2-column grid (`md:grid-cols-2`); cards show a cover image (or gray placeholder), then title/date, then description
 - Listing cards use `bg-gray-50 border border-gray-200` with `hover:bg-gray-100`
 - Blog and project detail pages use a `.post-content` class with scoped `<style>` blocks to style rendered Markdown (no typography plugin installed)
