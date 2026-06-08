@@ -2,6 +2,7 @@
 title: "Why I Keep a Learning Log"
 date: 2026-06-01
 description: "A habit I picked up three years ago that quietly changed how I retain and apply new ideas."
+image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80"
 ---
 
 A few years ago I started keeping a plain-text file on my desktop called `log.md`. Every time I learned something — a shortcut, a mental model, a line of code that finally made sense — I'd add a bullet. No formatting rules, no categories, just date and note.

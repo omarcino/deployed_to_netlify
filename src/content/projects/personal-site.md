@@ -4,6 +4,7 @@ date: 2026-06-07
 description: "A personal site built with Astro, Tailwind, and Pagefind — portfolio, blog, quotes, and projects in one place."
 url: "https://omarnina.com"
 tags: ["Astro", "Tailwind", "Pagefind"]
+image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80"
 ---
 
 A fast, statically generated personal site. The goal was simplicity: no framework overhead, no CMS, just Markdown files and a build step.

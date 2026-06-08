@@ -8,13 +8,20 @@ const quotes = (await getCollection('quotes')).sort(
 ---
 
 <BaseLayout title="Quotes">
-<ul class="space-y-6">
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {quotes.map((quote) => (
       <li>
-        <a href={`/quotes/${quote.id}`} class="block group">
-          <article class="bg-gray-50 hover:bg-gray-100 transition rounded-lg px-6 py-5 border border-gray-200 border-l-4 border-l-gray-400">
-            <p class="text-gray-800 italic">{quote.data.author}</p>
-            {quote.data.source && <p class="text-sm text-gray-500 mt-1">{quote.data.source}</p>}
+        <a href={`/quotes/${quote.id}`} class="block group h-full">
+          <article class="bg-gray-50 hover:bg-gray-100 transition rounded-lg border border-gray-200 overflow-hidden h-full flex flex-col">
+            {quote.data.image ? (
+              <img src={quote.data.image} alt={quote.data.author} class="w-full h-48 object-cover" />
+            ) : (
+              <div class="w-full h-48 bg-gray-200" />
+            )}
+            <div class="px-5 py-4 flex flex-col flex-1">
+              <p class="text-gray-800 italic font-medium group-hover:underline">{quote.data.author}</p>
+              {quote.data.source && <p class="text-sm text-gray-500 mt-1">{quote.data.source}</p>}
+            </div>
           </article>
         </a>
       </li>
