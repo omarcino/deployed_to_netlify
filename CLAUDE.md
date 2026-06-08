@@ -38,7 +38,8 @@ Created a layout
 `src/layouts/BaseLayout.astro`
 
 Layout features:
-- Nav: logo left, links + search right (desktop); hamburger menu (tablet/mobile)
+- Nav: logo left (links to home), links + search right (desktop); hamburger menu (tablet/mobile)
+- Nav links: Blog, Quotes, Projects — no Home link (the logo serves that purpose)
 - Nav and footer background: `#3E4249` with white text
 - Content width constrained to `max-w-4xl`, centered
 - Background image: `src/assets/images/tile.jpg` (repeating)
@@ -46,7 +47,11 @@ Layout features:
 
 All pages are using the new layout
 
-- `src/pages/index.astro` — Home (portfolio)
+- `src/pages/index.astro` — Home (portfolio), four sections:
+  1. **Hero**: profile photo (`public/profile.jpg`) left, intro text + social icons right
+  2. **Latest Projects**: 2-column grid, up to 6, links to `/projects`
+  3. **Latest Posts**: 2-column grid, up to 4, links to `/blog`
+  4. **Latest Quotes**: 2-column grid, up to 6, links to `/quotes`
 - `src/pages/blog.astro` — Blog listing
 - `src/pages/blog/[slug].astro` — Individual blog post
 - `src/pages/quotes.astro` — Quotes listing
