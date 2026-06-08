@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const quotes = (await getCollection('quotes')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="Quotes">
+<ul class="space-y-6">
+    {quotes.map((quote) => (
+      <li>
+        <a href={`/quotes/${quote.id}`} class="block group">
+          <article class="bg-gray-50 hover:bg-gray-100 transition rounded-lg px-6 py-5 border border-gray-200 border-l-4 border-l-gray-400">
+            <p class="text-gray-800 italic">{quote.data.author}</p>
+            {quote.data.source && <p class="text-sm text-gray-500 mt-1">{quote.data.source}</p>}
+          </article>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
