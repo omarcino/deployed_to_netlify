@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const projects = (await getCollection('projects'))
@@ -73,7 +74,7 @@ const quotes = (await getCollection('quotes'))
           <a href={`/projects/${project.id}`} class="block group h-full">
             <article class="bg-gray-50 hover:bg-gray-100 transition rounded-lg border border-gray-200 overflow-hidden h-full flex flex-col">
               {project.data.image ? (
-                <img src={project.data.image} alt={project.data.title} class="w-full h-40 object-cover" />
+                <Image src={project.data.image} alt={project.data.title} width={800} height={400} class="w-full h-40 object-cover" />
               ) : (
                 <div class="w-full h-40 bg-gray-200" />
               )}
@@ -112,7 +113,7 @@ const quotes = (await getCollection('quotes'))
           <a href={`/blog/${post.id}`} class="block group h-full">
             <article class="bg-gray-50 hover:bg-gray-100 transition rounded-lg border border-gray-200 overflow-hidden h-full flex flex-col">
               {post.data.image ? (
-                <img src={post.data.image} alt={post.data.title} class="w-full h-40 object-cover" />
+                <Image src={post.data.image} alt={post.data.title} width={800} height={400} class="w-full h-40 object-cover" />
               ) : (
                 <div class="w-full h-40 bg-gray-200" />
               )}
@@ -142,7 +143,7 @@ const quotes = (await getCollection('quotes'))
           <a href={`/quotes/${quote.id}`} class="block group h-full">
             <article class="bg-gray-50 hover:bg-gray-100 transition rounded-lg border border-gray-200 overflow-hidden h-full flex flex-col">
               {quote.data.image ? (
-                <img src={quote.data.image} alt={quote.data.author} class="w-full h-40 object-cover" />
+                <Image src={quote.data.image} alt={quote.data.author} width={800} height={400} class="w-full h-40 object-cover" />
               ) : (
                 <div class="w-full h-40 bg-gray-200" />
               )}
