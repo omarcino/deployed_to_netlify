@@ -39,7 +39,9 @@ Created a layout
 
 Layout features:
 - Nav: logo left (links to home), links + search right (desktop); hamburger menu (tablet/mobile)
-- Nav links: Blog, Quotes, Projects — no Home link (the logo serves that purpose)
+- Nav logo: `public/logoWhite_77x50.png` rendered at natural size (77×50px)
+- Nav links order: Projects, Blog, Quotes — no Home link (the logo serves that purpose)
+- Nav link font size: `text-lg` (18px)
 - Nav and footer background: `#3E4249` with white text
 - Content width constrained to `max-w-4xl`, centered
 - Background image: `src/assets/images/tile.jpg` (repeating)
@@ -86,6 +88,12 @@ Content lives in `src/content/<collection>/` as Markdown files.
 - `tags` — string[] (optional)
 - `image` — string URL (optional) — shown as card cover image
 - Body: full project write-up
+
+### Typography
+
+- Font: **IBM Plex Sans** (weights 300–700) loaded from Google Fonts in `BaseLayout.astro`
+- Base font size: `18px` set on `body` in `src/styles/global.css`
+- Font family registered in `src/styles/global.css` via Tailwind v4 `@theme { --font-sans }`
 
 ### Styling notes
 
