@@ -23,7 +23,7 @@ const posts = (await getCollection('blog')).sort(
                 {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
               <h2 class="text-lg font-semibold text-gray-900 mt-1 group-hover:underline">{post.data.title}</h2>
-              <p class="text-gray-600 text-sm mt-2">{post.data.description}</p>
+              <p class="text-gray-600 mt-2">{post.data.description}</p>
             </div>
           </article>
         </a>
