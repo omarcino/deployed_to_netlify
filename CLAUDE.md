@@ -109,3 +109,23 @@ Content lives in `src/content/<collection>/` as Markdown files.
 - Schema uses Astro's `image()` helper (not `z.string()`) — validates and processes local images at build time
 - Local images live in `src/assets/images/<collection>/` (e.g. `src/assets/images/blog/my-post.jpg`)
 - Reference in frontmatter with a relative path: `image: "../../assets/images/blog/my-post.jpg"`
+- Body images (inside Markdown content) go in `public/assets/images/blog/<post-slug>/` and are referenced as `/assets/images/blog/<post-slug>/filename.jpg`
+
+### Image recommendations
+
+**Card cover images — use Unsplash**
+
+Unsplash provides free, professional-quality photos with no attribution required.
+
+1. Browse and pick a photo at [unsplash.com](https://unsplash.com)
+2. Copy the photo ID from the URL (the alphanumeric string after `/photo-`)
+3. Download it sized for a card using curl:
+
+```bash
+curl -sL "https://images.unsplash.com/photo-{ID}?w=800&h=400&fit=crop&q=80" -o src/assets/images/blog/my-post.jpg
+```
+
+Parameters:
+- `w=800&h=400` — card dimensions
+- `fit=crop` — crops to fill without distortion
+- `q=80` — good quality/size balance

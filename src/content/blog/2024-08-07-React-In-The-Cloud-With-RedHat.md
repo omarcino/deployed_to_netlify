@@ -2,6 +2,7 @@
 title: "React In The Cloud With RedHat"
 date: 2024-08-07
 description: "Install and configure the JavaScript React library in AWS cloud using Red Hat Enterprise Linux 9 and Vite."
+image: "../../assets/images/blog/2024-08-07-React-In-The-Cloud-With-RedHat.jpg"
 ---
 
 This tutorial shows how to install and configure the JavaScript React library in Amazon Web Services (AWS) cloud using Red Hat Enterprise Linux 9.
@@ -26,7 +27,7 @@ Select the following options when lunching an instance.
 
 - Update Red Hat 9
 
-```
+```Shell
 sudo dnf update
 ```
 

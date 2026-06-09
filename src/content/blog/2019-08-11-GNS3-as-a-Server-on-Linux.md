@@ -2,6 +2,7 @@
 title: "GNS3 as a Server on Linux"
 date: 2019-08-11
 description: "How to set up GNS3 as a server on Ubuntu and connect a GNS3 client from Windows for advanced network simulation."
+image: "../../assets/images/blog/2019-08-11-GNS3-as-a-Server-on-Linux.jpg"
 ---
 
 GNS3 is an astonishing tool to emulate Cisco network topologies. But if it is done as a basic installation on a Windows computer; GNS3 can start consuming high amounts of resources when the transition from simple to more complex network topologies happens, and it wouldn't be possible to setup advanced switching operations.
