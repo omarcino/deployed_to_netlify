@@ -129,3 +129,24 @@ Parameters:
 - `w=800&h=400` — card dimensions
 - `fit=crop` — crops to fill without distortion
 - `q=80` — good quality/size balance
+
+### Search setup
+
+Pagefind is used for search. It runs after the Astro build and indexes the `dist/` folder.
+
+- Build command: `npm run build` (runs `astro build && pagefind --site dist`)
+- Search is wired up via Pagefind's JS API (not the PagefindUI component) to keep the original nav search box style
+- The search input is in `BaseLayout.astro` — desktop (`#search-desktop`) and mobile (`#search-mobile`)
+- Results appear in a dropdown below the input, dismissed on outside click
+- `/pagefind/pagefind.js` is marked as external in `astro.config.mjs` to avoid Vite build errors
+- Listing pages and home page have `data-pagefind-ignore="all"` to prevent duplicate results — only individual post pages are indexed
+
+### Deployment
+
+- **Hosting:** Netlify (auto-deploys from GitHub on every push)
+- **GitHub repo:** https://github.com/omarcino/deployed_to_netlify
+- **Live URL:** https://omardata.com
+- **DNS:** Managed at Namecheap — A record `@` → `75.2.60.5`, CNAME `www` → `omardatasite.netlify.app`
+- **SSL:** Provisioned automatically by Netlify
+
+To deploy a new version: `git push` — Netlify rebuilds and deploys automatically.
