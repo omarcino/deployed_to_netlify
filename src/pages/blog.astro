@@ -9,6 +9,7 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 <BaseLayout title="Blog">
+<div data-pagefind-ignore="all">
   <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {posts.map((post) => (
       <li>
@@ -31,4 +32,5 @@ const posts = (await getCollection('blog')).sort(
       </li>
     ))}
   </ul>
+</div>
 </BaseLayout>

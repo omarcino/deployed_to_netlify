@@ -9,6 +9,7 @@ const projects = (await getCollection('projects')).sort(
 ---
 
 <BaseLayout title="Projects">
+<div data-pagefind-ignore="all">
   <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {projects.map((project) => (
       <li>
@@ -40,4 +41,5 @@ const projects = (await getCollection('projects')).sort(
       </li>
     ))}
   </ul>
+</div>
 </BaseLayout>

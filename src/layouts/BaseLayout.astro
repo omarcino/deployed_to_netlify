@@ -40,11 +40,14 @@ function navClass(href: string) {
             <a href="/projects" class={navClass('/projects')}>Projects</a>
             <a href="/blog" class={navClass('/blog')}>Blog</a>
             <a href="/quotes" class={navClass('/quotes')}>Quotes</a>
-            <div class="flex items-center border rounded px-3 py-1 gap-2 text-gray-400">
-              <input type="search" placeholder="Search..." class="outline-none text-sm bg-transparent text-white placeholder-gray-400 w-32" />
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-              </svg>
+            <div class="relative">
+              <div class="flex items-center border rounded px-3 py-1 gap-2 text-gray-400">
+                <input id="search-desktop" type="search" placeholder="Search..." autocomplete="off" class="outline-none text-sm bg-transparent text-white placeholder-gray-400 w-32" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+                </svg>
+              </div>
+              <div id="results-desktop" class="hidden absolute right-0 top-full mt-1 w-80 bg-white rounded shadow-lg z-50 max-h-96 overflow-y-auto text-gray-900"></div>
             </div>
           </div>
 
@@ -61,11 +64,14 @@ function navClass(href: string) {
           <a href="/projects" class={navClass('/projects')}>Projects</a>
           <a href="/blog" class={navClass('/blog')}>Blog</a>
           <a href="/quotes" class={navClass('/quotes')}>Quotes</a>
-          <div class="flex items-center border rounded px-3 py-1 gap-2 text-gray-400 w-fit">
-            <input type="search" placeholder="Search..." class="outline-none text-sm bg-transparent text-white placeholder-gray-400 w-40" />
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-            </svg>
+          <div class="relative">
+            <div class="flex items-center border rounded px-3 py-1 gap-2 text-gray-400 w-fit">
+              <input id="search-mobile" type="search" placeholder="Search..." autocomplete="off" class="outline-none text-sm bg-transparent text-white placeholder-gray-400 w-40" />
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+              </svg>
+            </div>
+            <div id="results-mobile" class="hidden absolute left-0 top-full mt-1 w-80 bg-white rounded shadow-lg z-50 max-h-96 overflow-y-auto text-gray-900"></div>
           </div>
         </div>
       </header>
@@ -77,6 +83,58 @@ function navClass(href: string) {
           menu?.classList.toggle('hidden');
           menu?.classList.toggle('flex');
         });
+
+        let pagefind: any = null;
+        async function getPagefind() {
+          if (!pagefind) {
+            try {
+              pagefind = await import('/pagefind/pagefind.js');
+              await pagefind.init();
+            } catch { pagefind = null; }
+          }
+          return pagefind;
+        }
+
+        function showResults(items: any[], el: HTMLElement) {
+          if (!items.length) {
+            el.innerHTML = '<p class="px-4 py-3 text-sm text-gray-500">No results found.</p>';
+          } else {
+            el.innerHTML = items.map(r =>
+              `<a href="${r.url}" class="block px-4 py-3 hover:bg-gray-100 border-b border-gray-100 last:border-0">
+                <div class="text-sm font-medium text-gray-900">${r.meta?.title ?? r.url}</div>
+                ${r.excerpt ? `<div class="text-xs text-gray-500 mt-0.5 line-clamp-2">${r.excerpt}</div>` : ''}
+              </a>`
+            ).join('');
+          }
+          el.classList.remove('hidden');
+        }
+
+        function setupSearch(inputId: string, resultsId: string) {
+          const input = document.getElementById(inputId) as HTMLInputElement | null;
+          const results = document.getElementById(resultsId);
+          if (!input || !results) return;
+          let timer: ReturnType<typeof setTimeout>;
+          input.addEventListener('input', () => {
+            clearTimeout(timer);
+            const q = input.value.trim();
+            if (!q) { results.classList.add('hidden'); return; }
+            timer = setTimeout(async () => {
+              const pf = await getPagefind();
+              if (!pf) return;
+              const res = await pf.search(q);
+              const data = await Promise.all(res.results.slice(0, 8).map((r: any) => r.data()));
+              showResults(data, results);
+            }, 200);
+          });
+          document.addEventListener('click', (e) => {
+            if (!input.contains(e.target as Node) && !results.contains(e.target as Node)) {
+              results.classList.add('hidden');
+            }
+          });
+        }
+
+        setupSearch('search-desktop', 'results-desktop');
+        setupSearch('search-mobile', 'results-mobile');
       </script>
       <main class="flex-1 px-6 py-8 bg-white">
         <slot />
