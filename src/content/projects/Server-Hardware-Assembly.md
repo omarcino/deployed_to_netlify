@@ -2,7 +2,7 @@
 title: "Hardware Assembly for Military and Machine Learning Compute"
 date: 2026-07-07
 description: "A defined, automated process for assembling rugged complex servers for military or machine learning purposes from scratch"
-url: "https://omarnina.com"
+url: "https://omardata.com"
 tags: ["Rugged servers", "Military", "Machine Learning", "AI"]
 image: "../../assets/images/projects/personal-site.jpg"
 ---
