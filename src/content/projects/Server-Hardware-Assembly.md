@@ -4,7 +4,7 @@ date: 2026-07-07
 description: "A defined, automated process for assembling rugged complex servers for military or machine learning purposes from scratch"
 url: "https://omardata.com"
 tags: ["Rugged servers", "Military", "Machine Learning", "AI"]
-image: "../../assets/images/projects/personal-site.jpg"
+image: "../../assets/images/projects/server-hardware.jpg"
 ---
 
 Defining a precise process to assemble rugged servers for the military, machine
