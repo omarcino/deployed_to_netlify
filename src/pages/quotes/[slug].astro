@@ -30,3 +30,10 @@ const { Content } = await render(quote);
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  blockquote:has(table) {
+    border-left: none;
+    padding-left: 0;
+  }
+</style>

@@ -122,7 +122,7 @@ Unsplash provides free, professional-quality photos with no attribution required
 3. Download it sized for a card using curl:
 
 ```bash
-curl -sL "https://images.unsplash.com/photo-{ID}?w=800&h=400&fit=crop&q=80" -o src/assets/images/blog/my-post.jpg
+curl -sL "https://images.unsplash.com/photo-{ID}?w=800&h=400&fit=crop&q=80" -o src/assets/images/projects/specialized-rack.jpg
 ```
 
 Parameters:
